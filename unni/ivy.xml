@@ -53,7 +53,7 @@
 		<exclude module="plexus-utils"/>
 		<exclude module="rome"/>
 		<exclude module="regexp"/>
-		   
+		
 		<exclude module="validation.*" matcher="regexp"/>
 		<exclude module="jasper.*" matcher="regexp"/>
 		<exclude module="geronimo.*" matcher="regexp"/>
