@@ -27,5 +27,42 @@
 	<dependencies>
 		<dependency org="mysql" name="mysql-connector-java" rev="5.1.27"/>
 		<dependency org="org.springframework" name="spring-webmvc" rev="3.2.4.RELEASE"/>
+		<dependency org="org.springframework" name="spring-web" rev="3.0.2.RELEASE"/>
+		<!-- Exclude module which are already given in eclipse Dynamic Web Project -->
+		<exclude module="activation" />
+		<exclude module="commons-beanutils"/>
+		<exclude module="commons-codec"/>
+		<exclude module="commons-collections"/>
+		<exclude module="commons-digester"/>
+		<exclude module="commons-jexl"/>
+		<exclude module="commons-jxpath"/>
+		<exclude module="commons-vfs2"/>
+		<exclude module="el-api"/>
+		<exclude module="freemarker"/>
+		<exclude module="itext"/>
+		<exclude module="jmxtools"/>
+		<exclude module="jmxri"/>
+		<exclude module="jms"/>
+		<exclude module="jsp-api"/>
+		<exclude module="jdom"/>
+		<exclude module="jdtcore"/>
+		<exclude module="jcommon"/>
+		<exclude module="jxl"/>
+		<exclude module="mail"/>
+		<exclude module="poi"/>
+		<exclude module="plexus-utils"/>
+		<exclude module="rome"/>
+		<exclude module="regexp"/>
+		   
+		<exclude module="validation.*" matcher="regexp"/>
+		<exclude module="jasper.*" matcher="regexp"/>
+		<exclude module="geronimo.*" matcher="regexp"/>
+		<exclude module="maven.*" matcher="regexp"/>
+		<exclude module="jackson.*" matcher="regexp"/>
+		<exclude module="velocity.*" matcher="regexp"/>
+		<exclude module="bc.*" matcher="regexp"/>
+		<exclude module="xml.*" matcher="regexp"/>
+		<exclude module="tiles.*" matcher="regexp"/>
 	</dependencies>
+	
 </ivy-module>

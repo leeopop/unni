@@ -11,11 +11,11 @@
     <context:annotation-config />
     <import resource="context/mvc.xml"/>
     
-    <bean id="landController" class="kr.co.buzzword.controller.LandController" />
+    <bean id="homeController" class="org.sparcs.unni.HomeController" />
     
     <bean id="viewResolver" 
         class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/view/land/" />
+        <property name="prefix" value="/view/home/" />
         <property name="suffix" value=".jsp"/>
     </bean>
 </beans>
