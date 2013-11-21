@@ -16,9 +16,9 @@
 			value="jdbc:mysql://127.0.0.1/unni?characterEncoding=UTF-8&amp;autoReconnect=true" />
 		<property name="username" value="unni" />
 		<property name="password" value="unni" />
-		<property name="initialSize" value="10" />
-		<property name="maxActive" value="40" />
-		<property name="minIdle" value="10" />
+		<property name="initialSize" value="5" />
+		<property name="maxActive" value="10" />
+		<property name="minIdle" value="3" />
 		<property name="validationQuery" value="SELECT 1" />
 	</bean>
 
@@ -43,7 +43,7 @@
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.connection.characterEncoding">UTF-8</prop>
 				<!-- Do not change until you know what you are doing -->
-				<prop key="hibernate.hbm2ddl.auto">create</prop>
+				<!-- <prop key="hibernate.hbm2ddl.auto">create</prop> -->
 				<!-- <prop key="hibernate.validator.apply_to_ddl">false</prop> -->
 			</props>
 		</property>

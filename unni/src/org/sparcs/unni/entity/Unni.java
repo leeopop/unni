@@ -65,6 +65,14 @@ public class Unni {
 		this.nickName = nickName;
 	}
 
+	public void setPassword(String rawPassword) {
+		// XXX this should be implemented well
+		String salt = "{" + this.id + "}";
+		String password = "{" + this.id + "}" + rawPassword;
+		this.passwordSalt = salt;
+		this.passwordHash = password + "do HASH!!";
+	}
+
 	public Date getTime() {
 		return time;
 	}

@@ -8,10 +8,11 @@
 						http://www.springframework.org/schema/context
 						http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 	
+    <context:load-time-weaver />
     <context:annotation-config />
     <import resource="context/mvc.xml"/>
     
-    <bean id="homeController" class="org.sparcs.unni.HomeController" />
+    <bean id="homeController" class="org.sparcs.unni.controller.HomeController" />
     
     <bean id="viewResolver" 
         class="org.springframework.web.servlet.view.InternalResourceViewResolver">
