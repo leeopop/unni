@@ -9,7 +9,6 @@
 						http://www.springframework.org/schema/context
 						http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 
-	<context:load-time-weaver />
 	<context:annotation-config />
 
 	<!-- Load DAO and Service to start service. This xml will be load only once 
