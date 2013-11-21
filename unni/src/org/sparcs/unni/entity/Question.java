@@ -39,12 +39,68 @@ public class Question {
 	@Index(name = "index_question_time")
 	private Date time = new Date();
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tagsPK.question", orphanRemoval = true)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tagPK.question", orphanRemoval = true)
 	@Cascade({ CascadeType.ALL })
 	private Set<Tag> tags;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "question", orphanRemoval = true)
 	@Cascade({ CascadeType.ALL })
 	private Set<Answer> answers;
+
+	public long getUuid() {
+		return uuid;
+	}
+
+	public void setUuid(long uuid) {
+		this.uuid = uuid;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public Unni getWriter() {
+		return writer;
+	}
+
+	public void setWriter(Unni writer) {
+		this.writer = writer;
+	}
+
+	public Date getTime() {
+		return time;
+	}
+
+	public void setTime(Date time) {
+		this.time = time;
+	}
+
+	public Set<Tag> getTags() {
+		return tags;
+	}
+
+	public void setTags(Set<Tag> tags) {
+		this.tags = tags;
+	}
+
+	public Set<Answer> getAnswers() {
+		return answers;
+	}
+
+	public void setAnswers(Set<Answer> answers) {
+		this.answers = answers;
+	}
 
 }

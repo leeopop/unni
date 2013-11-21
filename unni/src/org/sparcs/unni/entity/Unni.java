@@ -37,4 +37,35 @@ public class Unni {
 	@Column
 	private Date time = new Date();
 
+	public long getUuid() {
+		return uuid;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getRealName() {
+		return realName;
+	}
+
+	public void setRealName(String realName) {
+		this.realName = realName;
+	}
+
+	public String getNickName() {
+		return nickName;
+	}
+
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
+
+	public Date getTime() {
+		return time;
+	}
 }

@@ -41,4 +41,40 @@ public class Certificate {
 	@Index(name = "index_certificate")
 	private Date time = new Date();
 
+	public long getUuid() {
+		return uuid;
+	}
+
+	public Unni getUser() {
+		return user;
+	}
+
+	public void setUser(Unni user) {
+		this.user = user;
+	}
+
+	public CERT_TYPE getType() {
+		return type;
+	}
+
+	public void setType(CERT_TYPE type) {
+		this.type = type;
+	}
+
+	public String getCertificateInfo() {
+		return certificateInfo;
+	}
+
+	public void setCertificateInfo(String certificateInfo) {
+		this.certificateInfo = certificateInfo;
+	}
+
+	public Date getTime() {
+		return time;
+	}
+
+	public void setTime(Date time) {
+		this.time = time;
+	}
+
 }

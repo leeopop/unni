@@ -12,19 +12,27 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-@AssociationOverrides({ @AssociationOverride(name = "tagsPK.question", joinColumns = @JoinColumn(name = "question")), })
+@AssociationOverrides({ @AssociationOverride(name = "tagPK.question", joinColumns = @JoinColumn(name = "question")), })
 public class Tag {
 
 	@EmbeddedId
-	private TagsPK tagsPK;
+	private TagPK tagPK;
+
+	public void setTagPK(TagPK tagPK) {
+		this.tagPK = tagPK;
+	}
 
 	public Question getQuestion() {
-		return tagsPK.getQuestion();
+		return tagPK.getQuestion();
+	}
+
+	public String getName() {
+		return tagPK.getName();
 	}
 }
 
 @Embeddable
-class TagsPK implements Serializable {
+class TagPK implements Serializable {
 
 	private static final long serialVersionUID = 3207292630957460900L;
 
@@ -33,6 +41,11 @@ class TagsPK implements Serializable {
 
 	@ManyToOne
 	private Question question;
+
+	public TagPK(String name, Question q) {
+		this.name = name;
+		this.question = q;
+	}
 
 	public Question getQuestion() {
 		return question;
@@ -48,7 +61,7 @@ class TagsPK implements Serializable {
 		if (o == null || getClass() != o.getClass())
 			return false;
 
-		TagsPK that = (TagsPK) o;
+		TagPK that = (TagPK) o;
 
 		if (name != null ? !name.equals(that.name) : that.name != null)
 			return false;

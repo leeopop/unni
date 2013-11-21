@@ -30,7 +30,7 @@
 			<list>
 				<value>org.sparcs.unni.entity.Answer</value>
 				<value>org.sparcs.unni.entity.Certificate</value>
-				<value>org.sparcs.unni.entity.Condition</value>
+				<value>org.sparcs.unni.entity.Qualification</value>
 				<value>org.sparcs.unni.entity.Info</value>
 				<value>org.sparcs.unni.entity.Question</value>
 				<value>org.sparcs.unni.entity.Tag</value>

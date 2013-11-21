@@ -31,4 +31,27 @@ public class Answer {
 	@Index(name = "index_answer_time")
 	private Date time = new Date();
 
+	public long getUuid() {
+		return uuid;
+	}
+
+	public Question getQuestion() {
+		return question;
+	}
+
+	public void setQuestion(Question q) {
+		question = q;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public Date getTime() {
+		return time;
+	}
 }
