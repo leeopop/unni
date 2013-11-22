@@ -98,6 +98,7 @@
 			<exclude module="xml.*" matcher="regexp" />
 			<exclude module="tiles.*" matcher="regexp" />
 		</dependency>
+		<dependency org="commons-codec" name="commons-codec" rev="1.8"/>
 	</dependencies>
 
 </ivy-module>
