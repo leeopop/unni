@@ -25,4 +25,9 @@ public class UnniServiceImpl implements UnniService {
 
 		return unniDao.saveOrUpdate(newUnni);
 	}
+
+	@Override
+	public Unni findUnni(String id) {
+		return unniDao.searchDB(id);
+	}
 }

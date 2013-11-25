@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:security="http://www.springframework.org/schema/security"
+    xmlns="http://www.springframework.org/schema/beans"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+      					http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+      					http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context-3.1.xsd
+   						http://www.springframework.org/schema/security 
+   						http://www.springframework.org/schema/security/spring-security-3.1.xsd" >
+
+    <!-- This is where we configure Spring-Security -->
+    <context:annotation-config />
+
+    <security:global-method-security secured-annotations="enabled" />
+    <security:http entry-point-ref="loginUrlAuthenticationEntryPoint" 
+        auto-config="false"
+        use-expressions="true" >
+        <security:intercept-url access="permitAll" pattern="/" />
+        <security:intercept-url access="hasRole(&apos;ROLE_USER&apos;)" pattern="/user" />
+        
+        <security:custom-filter ref="rememberMeFilter" position="REMEMBER_ME_FILTER"/>
+        <security:custom-filter position="FORM_LOGIN_FILTER" ref="unniLoginFilter" />
+        
+        <security:logout
+            delete-cookies="unni_token"
+            invalidate-session="true"
+            logout-success-url="/login"
+            logout-url="/logout" />
+    </security:http>
+    
+    <bean id="loginUrlAuthenticationEntryPoint" 
+        class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+ 		<property name="loginFormUrl" value="/login" />
+	</bean>
+    
+    <bean id="unniLoginFilter" class="org.sparcs.unni.UnniAuthenticationFilter">
+      <property name="authenticationManager" ref="authenticationManager" />
+      <property name="authenticationSuccessHandler" ref="authenticationSuccessHandler" />
+      <property name="authenticationFailureHandler" ref="failureHandler" />
+      <property name="rememberMeServices" ref="rememberMeServices" />
+  	</bean>
+  	
+    <bean id="authenticationSuccessHandler" 
+        class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler">
+    	<property name="defaultTargetUrl" value="/user"/>
+    	<!-- <property name="useReferer" value="true"/> -->
+	</bean>
+	
+    <bean id="failureHandler" 
+        class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler">
+       <property name="defaultFailureUrl" value="/login?error=true" />
+  	</bean>
+  	
+    <bean id="rememberMeFilter"
+		class="org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter">
+		<property name="rememberMeServices" ref="rememberMeServices" />
+		<property name="authenticationManager" ref="authenticationManager" />
+	</bean>
+
+    <bean id="rememberMeServices" 
+        class="org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices">
+    	<property name="key" value="unni" />
+    	<property name="cookieName" value="unni_token" />
+    	<property name="parameter" value="remember" />
+    	<property name="tokenValiditySeconds" value="604800" />
+    	<property name="userDetailsService" ref="userDetailsService" />
+    	<property name="alwaysRemember" value="false" />
+	</bean>
+	
+    <bean id="rememberMeAuthenticationProvider"
+		class="org.springframework.security.authentication.RememberMeAuthenticationProvider">
+		<property name="key" value="unni" />
+	</bean>
+ 
+    <!-- A custom service where Spring will retrieve users and their corresponding access levels -->
+    <bean id="userDetailsService" class="org.sparcs.unni.service.impl.UserDetailsServiceImpl" />
+
+    <!-- Use a Md5 encoder since the user's passwords are stored as Md5 in the database -->
+    <bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+
+    <!-- Declare an authentication-manager to use a custom userDetailsService -->
+	<security:authentication-manager alias="authenticationManager">
+	    <security:authentication-provider ref="rememberMeAuthenticationProvider" />
+	    <security:authentication-provider ref="daoAuthenticationProvider"/>
+	</security:authentication-manager>
+	 
+	<bean id="daoAuthenticationProvider" class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
+	    <property name="userDetailsService" ref="userDetailsService"/>
+	    <property name="passwordEncoder" ref="passwordEncoder"/>
+	</bean>
+    						
+</beans>
