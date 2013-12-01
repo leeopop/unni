@@ -9,5 +9,19 @@
 
 <body>
 	<h1>안녕 ${nickname}!!</h1>
+
+	<c:when test="${empty questions}">
+		<p>작성한 질문이 없습니다.</p>
+	</c:when>
+	<c:otherwise>
+		<p>내가 작성한 질문들</p>
+		<br>
+
+		<c:forEach var="question" items="${questions}">
+			<p>{$question.getTitle()}</p>
+			<p>//TODO count replies</p>
+			<br>
+		</c:forEach>
+	</c:otherwise>
 </body>
 </html>
